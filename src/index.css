@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header {
+    @apply grid grid-cols-3 items-center p-8 rounded-b-3xl shadow-xl font-sans  text-slate-600;
+  }
+
+  .button1 {
+    @apply text-white px-4 py-2 bg-gradient-to-r from-green-300 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full font-semibold shadow-md;
+  }
+
+  .h1 {
+    @apply text-center place-self-center text-5xl font-bold;
+  }
+}
