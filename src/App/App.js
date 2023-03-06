@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Game from "../Game/Game";
+import InputGame from "../Game/InputGame";
 import AdviceHandler from "../Header/AdviceHandler";
 import { upperFunction } from "../helpers";
 
 function App() {
   const [boolAdvice, setBoolAdvice] = useState(false);
   const [boolApp, setBoolApp] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const [columns, setColumns] = useState([
-    ["D", "A", "N", "I", "X"],
-    ["R", "A", "T", "A", "S"],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -20,8 +22,11 @@ function App() {
   const [wordArr, setWordArr] = useState(() => {
     return upperFunction();
   });
-
-  console.log(wordArr);
+  const changeColumnHandler = (value) => {
+    console.log("tremendo marico");
+    setInputValue("");
+    return setColumns(value);
+  };
 
   return (
     <>
@@ -29,7 +34,22 @@ function App() {
       {boolAdvice && (
         <AdviceHandler setBoolAdvice={setBoolAdvice} boolAdvice={boolAdvice} />
       )}
-      <Game wordArr={wordArr} columns={columns} setColumns={setColumns} />
+      {boolApp && <p>HOLAAAAA</p>}
+      <Game
+        wordArr={wordArr}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        columns={columns}
+        setColumns={setColumns}
+      />
+      <InputGame
+        wordArr={wordArr}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        columns={columns}
+        setColumns={setColumns}
+        changeColumnHandler={changeColumnHandler}
+      />
       <footer>
         <Footer />
       </footer>

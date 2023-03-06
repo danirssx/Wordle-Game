@@ -20,3 +20,12 @@ export const upperFunction = () => {
 
   return upperWord;
 };
+
+export const replaceItem = (arr, sample) => {
+  let i = 0;
+
+  if (arr.length === 6) {
+    arr[i] = sample;
+    i++;
+  }
+};
