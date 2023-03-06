@@ -7,14 +7,15 @@ function Game({ wordArr, columns }) {
         return (
           <ol
             key={i}
-            className="flex justify-center p-1 items-center md:space-x-3"
+            className="flex justify-center p-1
+          "
           >
             {item.map((letter, i) => {
               console.log(letter);
               return (
                 <li
                   key={i}
-                  className="font-bold text-5xl p-8 bg-slate-600 text-white rounded-md "
+                  className="font-sans font-bold text-center text-5xl my-[2px] m-[2px] items-center w-[62px] h-[62px] border-2  text-black rounded-md "
                 >
                   {letter}
                 </li>

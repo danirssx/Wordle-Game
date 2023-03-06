@@ -10,7 +10,7 @@ function App() {
   const [boolApp, setBoolApp] = useState(false);
   const [columns, setColumns] = useState([
     ["D", "A", "N", "I", "X"],
-    ["", "", "", "", ""],
+    ["R", "A", "T", "A", "S"],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
