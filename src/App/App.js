@@ -8,7 +8,7 @@ import { upperFunction } from "../helpers";
 
 function App() {
   const [boolAdvice, setBoolAdvice] = useState(false);
-  const [boolApp, setBoolApp] = useState(false);
+  const [emptyValues, setEmptyValues] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [columns, setColumns] = useState([
     ["", "", "", "", ""],
@@ -22,10 +22,17 @@ function App() {
   const [wordArr, setWordArr] = useState(() => {
     return upperFunction();
   });
+
+  console.log(wordArr);
+
   const changeColumnHandler = (value) => {
     console.log("tremendo marico");
     setInputValue("");
     return setColumns(value);
+  };
+
+  const changeEmptyHandler = (value) => {
+    setEmptyValues(value);
   };
 
   return (
@@ -34,18 +41,17 @@ function App() {
       {boolAdvice && (
         <AdviceHandler setBoolAdvice={setBoolAdvice} boolAdvice={boolAdvice} />
       )}
-      {boolApp && <p>HOLAAAAA</p>}
       <Game
-        wordArr={wordArr}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
         columns={columns}
-        setColumns={setColumns}
+        emptyValues={emptyValues}
+        changeEmptyHandler={changeEmptyHandler}
       />
       <InputGame
         wordArr={wordArr}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        emptyValues={emptyValues}
+        setEmptyValues={setEmptyValues}
         columns={columns}
         setColumns={setColumns}
         changeColumnHandler={changeColumnHandler}

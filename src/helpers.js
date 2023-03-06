@@ -5,6 +5,15 @@ import { words } from "./words";
 export const LETTERS_MAX = 5;
 export const ANSWER_GUESS = 6;
 
+// colors bg letters
+
+export const BG_LETTERS = {
+  empty: "#384e78",
+  wrong: "#e06c78",
+  regular: "#eeb462",
+  correct: "#6aab9c",
+};
+
 // make a wordle syntax
 
 const pickRandom = (arr) => {
@@ -19,6 +28,11 @@ export const upperFunction = () => {
   const upperWord = word.map((letter) => letter.toUpperCase());
 
   return upperWord;
+};
+
+export const transformWord = (word) => {
+  const newWord = word.split("");
+  return newWord.map((letter) => letter.toUpperCase());
 };
 
 export const replaceItem = (arr, sample) => {

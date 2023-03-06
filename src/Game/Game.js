@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import { BG_LETTERS } from "../helpers";
 
-function Game({ columns, changeColumnHandler }) {
+let valueEmpty = true;
+
+function Game({ emptyValues, change, columns }) {
+  const bgStyles = {
+    backgroundColor: valueEmpty ? BG_LETTERS.regular : BG_LETTERS.correct,
+  };
+
   return (
     <>
       <div className="p-4">
@@ -11,7 +18,8 @@ function Game({ columns, changeColumnHandler }) {
                 return (
                   <li
                     key={i}
-                    className="font-sans font-bold text-center text-5xl my-[2px] m-[2px] items-center w-[62px] h-[62px] border-2  text-black rounded-lg "
+                    style={letter !== "" ? bgStyles : {}}
+                    className="font-sans font-bold text-center text-5xl my-[2px] m-[2px] items-center w-[62px] h-[62px] border-2 text-white rounded-lg "
                   >
                     {letter}
                   </li>
