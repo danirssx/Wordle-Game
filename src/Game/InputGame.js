@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { LETTERS_MAX, ANSWER_GUESS, transformWord } from "../helpers";
+import {
+  LETTERS_MAX,
+  ANSWER_GUESS,
+  transformWord,
+  valueCheck,
+} from "../helpers";
 
 let i = 0;
 
 function Input({
   inputValue,
   setInputValue,
-  emptyValues,
+  wordArr,
   setEmptyValues,
   columns,
   changeColumnHandler,
@@ -17,8 +22,12 @@ function Input({
 
     if (i < ANSWER_GUESS) {
       if (inputValue.length === LETTERS_MAX) {
-        newColumn[i] = transformWord(inputValue);
+        newColumn[i].array = transformWord(inputValue);
         setEmptyValues(true);
+
+        valueCheck(newColumn, wordArr, i);
+
+        console.log(newColumn);
 
         changeColumnHandler(newColumn);
 

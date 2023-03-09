@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import { BG_LETTERS } from "../helpers";
 
 let valueEmpty = true;
+const valueTest = ["C", "L", "A", "R", "O"];
 
 function Game({ emptyValues, change, columns }) {
-  const bgStyles = {
-    backgroundColor: valueEmpty ? BG_LETTERS.regular : BG_LETTERS.correct,
-  };
-
   return (
     <>
       <div className="p-4">
         {columns.map((item, i) => {
+          const bgStyles = {
+            backgroundColor:
+              item.status === "correct"
+                ? BG_LETTERS.correct
+                : BG_LETTERS.wrong && item.status === "regular"
+                ? BG_LETTERS.regular
+                : BG_LETTERS.wrong,
+          };
           return (
             <ol key={i} className="flex justify-center p-1">
-              {item.map((letter, i) => {
+              {item.array.map((letter, i, array) => {
                 return (
                   <li
                     key={i}
@@ -28,13 +33,6 @@ function Game({ emptyValues, change, columns }) {
             </ol>
           );
         })}
-        {/* {wordArr.map((letter, i) => {
-          return (
-            <li key={i} className="font-bold text-5xl bg-slate-600 text-white">
-              {letter}
-            </li>
-          );
-        })} */}
       </div>
     </>
   );

@@ -35,11 +35,22 @@ export const transformWord = (word) => {
   return newWord.map((letter) => letter.toUpperCase());
 };
 
-export const replaceItem = (arr, sample) => {
-  let i = 0;
+export const valueCheck = (value, check, i) => {
+  const checkCorrect = value[i].array.every(
+    (letter, index) => letter === check[index]
+  );
 
-  if (arr.length === 6) {
-    arr[i] = sample;
-    i++;
+  const checkRegularTest = value[i].array.map((letter) => {
+    return check.includes(letter);
+  });
+
+  const checkRegular = !checkRegularTest.every((letter) => letter == false);
+
+  if (checkCorrect) {
+    value[i].status = "correct";
+  } else if (checkRegular) {
+    value[i].status = "regular";
+  } else {
+    value[i].status = "wrong";
   }
 };

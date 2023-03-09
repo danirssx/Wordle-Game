@@ -11,19 +11,17 @@ function App() {
   const [emptyValues, setEmptyValues] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [columns, setColumns] = useState([
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
   ]);
 
   const [wordArr, setWordArr] = useState(() => {
     return upperFunction();
   });
-
-  console.log(wordArr);
 
   const changeColumnHandler = (value) => {
     console.log("tremendo marico");
@@ -57,6 +55,9 @@ function App() {
         changeColumnHandler={changeColumnHandler}
       />
       <footer>
+        <p className="text-center place-self-center text-xl font-bold">
+          {wordArr}
+        </p>
         <Footer />
       </footer>
     </>
