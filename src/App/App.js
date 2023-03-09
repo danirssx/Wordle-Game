@@ -41,6 +41,7 @@ function App() {
       )}
       <Game
         columns={columns}
+        wordArr={wordArr}
         emptyValues={emptyValues}
         changeEmptyHandler={changeEmptyHandler}
       />

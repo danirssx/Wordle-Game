@@ -40,16 +40,21 @@ export const valueCheck = (value, check, i) => {
     (letter, index) => letter === check[index]
   );
 
-  const checkRegularTest = value[i].array.map((letter) => {
-    return check.includes(letter);
-  });
+  let arrayValues = [];
 
-  const checkRegular = !checkRegularTest.every((letter) => letter == false);
+  const checkRegularTest = value[i].array.map((letter) => {
+    if (check.includes(letter)) {
+      arrayValues.push(letter);
+      value[i].values = arrayValues;
+      return true;
+    } else {
+      return false;
+    }
+    // return check.includes(letter);
+  });
 
   if (checkCorrect) {
     value[i].status = "correct";
-  } else if (checkRegular) {
-    value[i].status = "regular";
   } else {
     value[i].status = "wrong";
   }
