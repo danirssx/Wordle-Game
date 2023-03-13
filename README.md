@@ -4,7 +4,7 @@ This project was built from scratch using React and Tailwind CSS. It is a Wordle
 
 # Visuals
 
-![](C:\Users\user\Desktop\Code\Wordle\wordle-code\wordle-code\icons\danie.gif)
+![](icons\danie.gif)
 
 ## Authors and acknowledgment
 
