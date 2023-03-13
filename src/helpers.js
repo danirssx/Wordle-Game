@@ -14,6 +14,19 @@ export const BG_LETTERS = {
   correct: "#6aab9c",
 };
 
+// Empty Columns
+
+export const EMPTY_COLUMNS = () => {
+  return [
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+    { array: ["", "", "", "", ""], status: "empty" },
+  ];
+};
+
 // make a wordle syntax
 
 const pickRandom = (arr) => {

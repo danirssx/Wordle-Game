@@ -4,40 +4,48 @@ import {
   ANSWER_GUESS,
   transformWord,
   valueCheck,
+  EMPTY_COLUMNS,
 } from "../helpers";
 
-let i = 0;
-
-function Input({
+function InputGame({
   inputValue,
   setInputValue,
   wordArr,
+  countInput,
+  countInputHandler,
   setEmptyValues,
   columns,
   changeColumnHandler,
+  setWinAdvice,
+  winAdvice,
 }) {
   const changeColumn = (e) => {
     e.preventDefault();
     const newColumn = columns;
 
-    if (i < ANSWER_GUESS) {
+    if (countInput < ANSWER_GUESS) {
       if (inputValue.length === LETTERS_MAX) {
-        newColumn[i].array = transformWord(inputValue);
+        newColumn[countInput].array = transformWord(inputValue);
         setEmptyValues(true);
 
-        valueCheck(newColumn, wordArr, i);
-
-        console.log(newColumn);
+        valueCheck(newColumn, wordArr, countInput);
 
         changeColumnHandler(newColumn);
+        countInputHandler(countInput + 1);
 
-        i++;
-        console.log(i);
+        console.log(columns);
+
+        // reset Handler
+        if (
+          JSON.stringify(columns[countInput].array) == JSON.stringify(wordArr)
+        ) {
+          setWinAdvice(true);
+        }
       } else {
-        alert("You must introduce a correct value");
+        alert("You must introduce a correct value (5 letters)");
       }
     } else {
-      alert("You Win!");
+      alert("You lose!");
     }
   };
 
@@ -46,20 +54,26 @@ function Input({
       className="items-center text-center font-sans "
       onSubmit={changeColumn}
     >
-      <p className=" text-2xl font-medium mb-2 text-slate-400 ">5 letters</p>
-      <input
-        type="text"
-        placeholder="type a word"
-        className=" rounded-md border-4 text-2xl p-2 font-normal text-center"
-        value={inputValue}
-        onChange={(e) => {
-          const newValue = e.target.value;
-          setInputValue(newValue);
-          setEmptyValues(false);
-        }}
-      />
+      {!winAdvice && (
+        <div>
+          <p className=" text-2xl font-medium mb-2 text-slate-400 ">
+            5 letters
+          </p>
+          <input
+            type="text"
+            placeholder="type a word"
+            className=" rounded-md border-4 text-2xl p-2 font-normal text-center"
+            value={inputValue}
+            onChange={(e) => {
+              const newValue = e.target.value;
+              setInputValue(newValue);
+              setEmptyValues(false);
+            }}
+          />
+        </div>
+      )}
     </form>
   );
 }
 
-export default Input;
+export default InputGame;

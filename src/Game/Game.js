@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { BG_LETTERS } from "../helpers";
 
-let valueEmpty = true;
-const valueTest = ["C", "L", "A", "R", "O"];
-
 function Game({ columns, wordArr }) {
   return (
     <>
@@ -22,18 +19,10 @@ function Game({ columns, wordArr }) {
           return (
             <ol key={i} className="flex justify-center p-1">
               {item.array.map((letter, i, array) => {
-                console.log(
-                  "letra en cuestion: ",
-                  array[i],
-                  array[i] === wordArr[i]
-                );
-
                 const bgChange = array[i] === wordArr[i] ? bgTrue : bgWrong;
 
                 const normalBg = letter !== "" ? bgChange : {};
                 const checkBg = bgValues?.includes(letter);
-
-                // AQUI CASI LISTO
 
                 return (
                   <li

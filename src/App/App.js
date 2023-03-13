@@ -4,33 +4,45 @@ import Footer from "../Footer/Footer";
 import Game from "../Game/Game";
 import InputGame from "../Game/InputGame";
 import AdviceHandler from "../Header/AdviceHandler";
-import { upperFunction } from "../helpers";
+import { upperFunction, EMPTY_COLUMNS } from "../helpers";
+import WinHandler from "../Game/WinHandler";
 
 function App() {
   const [boolAdvice, setBoolAdvice] = useState(false);
+  const [winAdvice, setWinAdvice] = useState(false);
   const [emptyValues, setEmptyValues] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [columns, setColumns] = useState([
-    { array: ["", "", "", "", ""], status: "empty" },
-    { array: ["", "", "", "", ""], status: "empty" },
-    { array: ["", "", "", "", ""], status: "empty" },
-    { array: ["", "", "", "", ""], status: "empty" },
-    { array: ["", "", "", "", ""], status: "empty" },
-    { array: ["", "", "", "", ""], status: "empty" },
-  ]);
+  const [countInput, setCountInput] = useState(0);
+  const [columns, setColumns] = useState(EMPTY_COLUMNS());
 
-  const [wordArr, setWordArr] = useState(() => {
-    return upperFunction();
-  });
+  const [wordArr, setWordArr] = useState(upperFunction);
+
+  console.log(countInput);
+
+  // CHECKKKK
+
+  // JSON.stringify(columns[countInput].array) == JSON.stringify(wordArr)
 
   const changeColumnHandler = (value) => {
-    console.log("tremendo marico");
     setInputValue("");
     return setColumns(value);
   };
 
+  const countInputHandler = (value) => {
+    return setCountInput(value);
+  };
+
   const changeEmptyHandler = (value) => {
     setEmptyValues(value);
+  };
+
+  const resetHandler = () => {
+    setColumns(EMPTY_COLUMNS);
+    setInputValue("");
+    setCountInput(0);
+    setWordArr(upperFunction);
+    // check
+    console.log(columns);
   };
 
   return (
@@ -38,6 +50,14 @@ function App() {
       <Header boolAdvice={boolAdvice} setBoolAdvice={setBoolAdvice}></Header>
       {boolAdvice && (
         <AdviceHandler setBoolAdvice={setBoolAdvice} boolAdvice={boolAdvice} />
+      )}
+      {winAdvice && (
+        <WinHandler
+          wordArr={wordArr}
+          winAdvice={winAdvice}
+          setWinAdvice={setWinAdvice}
+          resetHandler={resetHandler}
+        ></WinHandler>
       )}
       <Game
         columns={columns}
@@ -50,10 +70,14 @@ function App() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         emptyValues={emptyValues}
+        countInput={countInput}
+        countInputHandler={countInputHandler}
         setEmptyValues={setEmptyValues}
         columns={columns}
         setColumns={setColumns}
         changeColumnHandler={changeColumnHandler}
+        setWinAdvice={setWinAdvice}
+        winAdvice={winAdvice}
       />
       <footer>
         <p className="text-center place-self-center text-xl font-bold">
