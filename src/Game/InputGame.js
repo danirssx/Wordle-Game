@@ -35,8 +35,6 @@ function InputGame({
         changeColumnHandler(newColumn);
         countInputHandler(countInput + 1);
 
-        console.log(columns);
-
         // reset Handler
         if (
           JSON.stringify(columns[countInput].array) == JSON.stringify(wordArr)
