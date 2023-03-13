@@ -6,22 +6,18 @@ import InputGame from "../Game/InputGame";
 import AdviceHandler from "../Header/AdviceHandler";
 import { upperFunction, EMPTY_COLUMNS } from "../helpers";
 import WinHandler from "../Game/WinHandler";
+import LooseHandler from "../Game/LooseHandler";
 
 function App() {
   const [boolAdvice, setBoolAdvice] = useState(false);
   const [winAdvice, setWinAdvice] = useState(false);
+  const [looseAdvice, setLooseAdvice] = useState(false);
   const [emptyValues, setEmptyValues] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [countInput, setCountInput] = useState(0);
   const [columns, setColumns] = useState(EMPTY_COLUMNS());
 
   const [wordArr, setWordArr] = useState(upperFunction);
-
-  console.log(countInput);
-
-  // CHECKKKK
-
-  // JSON.stringify(columns[countInput].array) == JSON.stringify(wordArr)
 
   const changeColumnHandler = (value) => {
     setInputValue("");
@@ -59,6 +55,14 @@ function App() {
           resetHandler={resetHandler}
         ></WinHandler>
       )}
+      {looseAdvice && (
+        <LooseHandler
+          wordArr={wordArr}
+          looseAdvice={looseAdvice}
+          setLooseAdvice={setLooseAdvice}
+          resetHandler={resetHandler}
+        ></LooseHandler>
+      )}
       <Game
         columns={columns}
         wordArr={wordArr}
@@ -78,11 +82,10 @@ function App() {
         changeColumnHandler={changeColumnHandler}
         setWinAdvice={setWinAdvice}
         winAdvice={winAdvice}
+        setLooseAdvice={setLooseAdvice}
+        looseAdvice={looseAdvice}
       />
       <footer>
-        <p className="text-center place-self-center text-xl font-bold">
-          {wordArr}
-        </p>
         <Footer />
       </footer>
     </>

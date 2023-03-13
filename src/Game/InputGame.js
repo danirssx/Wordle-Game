@@ -18,6 +18,8 @@ function InputGame({
   changeColumnHandler,
   setWinAdvice,
   winAdvice,
+  setLooseAdvice,
+  looseAdvice,
 }) {
   const changeColumn = (e) => {
     e.preventDefault();
@@ -41,11 +43,12 @@ function InputGame({
         ) {
           setWinAdvice(true);
         }
+        if (countInput === 5) {
+          setLooseAdvice(true);
+        }
       } else {
         alert("You must introduce a correct value (5 letters)");
       }
-    } else {
-      alert("You lose!");
     }
   };
 
@@ -54,7 +57,7 @@ function InputGame({
       className="items-center text-center font-sans "
       onSubmit={changeColumn}
     >
-      {!winAdvice && (
+      {!winAdvice && !looseAdvice && (
         <div>
           <p className=" text-2xl font-medium mb-2 text-slate-400 ">
             5 letters
