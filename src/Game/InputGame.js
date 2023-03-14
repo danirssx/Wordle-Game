@@ -4,7 +4,6 @@ import {
   ANSWER_GUESS,
   transformWord,
   valueCheck,
-  EMPTY_COLUMNS,
 } from "../helpers";
 
 function InputGame({
@@ -35,13 +34,14 @@ function InputGame({
         changeColumnHandler(newColumn);
         countInputHandler(countInput + 1);
 
+        const checkVariable =
+          JSON.stringify(columns[countInput].array) == JSON.stringify(wordArr);
+
         // reset Handler
-        if (
-          JSON.stringify(columns[countInput].array) == JSON.stringify(wordArr)
-        ) {
+        if (checkVariable) {
           setWinAdvice(true);
         }
-        if (countInput === 5) {
+        if (countInput === 5 && !checkVariable) {
           setLooseAdvice(true);
         }
       } else {
@@ -57,17 +57,15 @@ function InputGame({
     >
       {!winAdvice && !looseAdvice && (
         <div>
-          <p className=" text-2xl font-medium mb-2 text-slate-400 ">
-            5 letters
-          </p>
+          <p className=" text-2xl font-medium mb-2 text-slate-400 ">5 letras</p>
           <input
             type="text"
-            placeholder="type a word"
+            placeholder="Escribe una palabra"
             className=" rounded-md border-4 text-2xl p-2 font-normal text-center"
             value={inputValue}
             onChange={(e) => {
               const newValue = e.target.value;
-              setInputValue(newValue);
+              setInputValue(newValue.trim());
               setEmptyValues(false);
             }}
           />

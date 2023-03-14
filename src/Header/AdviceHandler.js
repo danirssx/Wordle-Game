@@ -11,7 +11,7 @@ function AdviceHandler({ setBoolAdvice, boolAdvice }) {
     <Card>
       <div className="mt-3 items-center justify-center flex-none mx-auto p-6">
         <h1 className="leading-relaxed text-center p-3 pt-0 text-3xl font-bold text-slate-600">
-          Wordle Description
+          Descripción Wordle
         </h1>
         <p className="text-slate-800 justify-center text-center ">
           {textAdvice}

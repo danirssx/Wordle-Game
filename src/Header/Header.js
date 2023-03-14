@@ -31,7 +31,7 @@ function Header({ boolAdvice, setBoolAdvice }) {
               setBoolAdvice(!boolAdvice);
             }}
           >
-            Help
+            Info
           </button>
         </div>
       </div>

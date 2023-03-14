@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BG_LETTERS } from "../helpers";
+import { BG_LETTERS, reduceFunction } from "../helpers";
 
 function Game({ columns, wordArr }) {
   return (
@@ -15,15 +15,16 @@ function Game({ columns, wordArr }) {
           const bgTrue = {
             backgroundColor: BG_LETTERS.correct,
           };
-          const bgValues = item?.values;
+          const bgValues = item?.values?.array;
+
           return (
             <ol key={i} className="flex justify-center p-1">
               {item.array.map((letter, i, array) => {
-                const bgChange = array[i] === wordArr[i] ? bgTrue : bgWrong;
+                // set bg
 
+                const bgChange = array[i] === wordArr[i] ? bgTrue : bgWrong;
                 const normalBg = letter !== "" ? bgChange : {};
                 const checkBg = bgValues?.includes(letter);
-
                 return (
                   <li
                     key={i}

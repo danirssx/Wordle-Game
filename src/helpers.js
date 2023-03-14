@@ -14,6 +14,12 @@ export const BG_LETTERS = {
   correct: "#6aab9c",
 };
 
+// borrow spaces
+
+export function removeSpaces(input) {
+  return (input.value = input.value.trim());
+}
+
 // Empty Columns
 
 export const EMPTY_COLUMNS = () => {
@@ -55,10 +61,14 @@ export const valueCheck = (value, check, i) => {
 
   let arrayValues = [];
 
-  const checkRegularTest = value[i].array.map((letter) => {
+  value[i].array.map((letter) => {
     if (check.includes(letter)) {
-      arrayValues.push(letter);
-      value[i].values = arrayValues;
+      const count = reduceFunction(check, letter);
+      // arrayValues.push(letter);
+      if (!arrayValues.includes(letter)) {
+        arrayValues.push(...Array(count).fill(letter));
+        value[i].values = { array: arrayValues, count: count };
+      }
       return true;
     } else {
       return false;
@@ -71,4 +81,12 @@ export const valueCheck = (value, check, i) => {
   } else {
     value[i].status = "wrong";
   }
+};
+
+// Reduce method
+
+export const reduceFunction = (array, letter) => {
+  return array?.reduce((accumulator, currentValue) => {
+    return currentValue === letter ? accumulator + 1 : accumulator;
+  }, 0);
 };
